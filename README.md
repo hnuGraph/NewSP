@@ -1,7 +1,6 @@
 # NewSP
 ## Introduction
-
-We build a lightweight and query-independent index to accelerate the search. Our index costs only linear space to the graph size and the corresponding maintenance is independent with the query number as well as the query size. It can also be up- dated in constant time over the dynamic scenario. We also propose a novel virtual expansion strategy to effectively reduce searching space when evaluating each query. Virtual expansion could usually improve the performance when there is no Hamiltonian path in a query and it is applicable not only on CSM but also over static sub- graph matching. We further design an adaptive index filtering for accelerating the search, combining our query-independent index and virtual expansion strategy.
+ We creatively propose a new search process, called as NewSP, where items in the model are operations instead of extensions. We incorporate innovative operation-level expansion postponement in NewSP, which could avoid premature expansions without hindering the original pruning power of the selected matching order. With expansion postponement, there could be multiple consecutive expansions in NewSP model, and we take this unique opportu- nity to design a multi-expansion strategy for further optimization. Also, in our new model, candidate set may not be expanded imme- diately once determined, which provides another unique chance for us to design cache strategies for candidate set reuse. We additionally propose adaptive index filtering over our multi-expansion and candidate reuse for performance enhancement.
 
 ## Compile
 
