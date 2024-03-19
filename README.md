@@ -1,6 +1,6 @@
 # NewSP
 ## Introduction
- We creatively propose a new search process, called as NewSP, where items in the model are operations instead of extensions. We incorporate innovative operation-level expansion postponement in NewSP, which could avoid premature expansions without hindering the original pruning power of the selected matching order. With expansion postponement, there could be multiple consecutive expansions in NewSP model, and we take this unique opportu- nity to design a multi-expansion strategy for further optimization. Also, in our new model, candidate set may not be expanded imme- diately once determined, which provides another unique chance for us to design cache strategies for candidate set reuse. We additionally propose adaptive index filtering over our multi-expansion and candidate reuse for performance enhancement.
+In this study, we address the problem of unnecessary computations in traditional continuous subgraph matching (CSM) frameworks due to premature expansions of the search space in dynamic graphs. Traditional CSM frameworks expand small partial matches according to a specific matching order until the final results are obtained. This extension involves two sequential steps: computing candidate vertices for an unmapped query vertex and expanding the search space using these candidate data. However, this long-established search model has a potential flaw, as premature expansions of the search space can lead to unnecessary computations. To address this issue, we introduce a novel search process, NewSP. Unlike traditional methods, NewSP emphasizes operations rather than extensions, incorporating a unique feature of postponing expansion at the operation level. This approach prevents premature expansions without compromising the initial pruning power of the selected matching order. Furthermore, NewSP allows for multiple consecutive expansions, paving the way for a multi-expansion strategy for further optimization. Our model also enables the implementation of cache strategies for candidate set reuse, as it does not necessitate immediate expansion of a candidate set once identified. To improve performance, we propose an adaptive index filtering strategy independent of the specific index used. Comprehensive experiments demonstrate that our method improves by up to two to three orders of magnitude compared to traditional algorithms.
 
 ## Compile
 
@@ -30,9 +30,7 @@ Other commandline parameters supported by the framework are listed in the follow
 | --initial-time-limit    | Time limit for the initial matching phase (in seconds).         | 0-4294967295     | 4294967295    |
 | --print-prep            | Print preprocessing results or not.                             | on/off           | on            |
 | --print-enum            | Print matches results or not.                                   | on/off           | off           |
-| --I2sn                  | The initail data use to collect LR sample                       | 0-initial data   | 1             |
-| --SCN                   | LR sample collect number                                        | 0-initial data   | 1             |
-| --SRP                   | LR sample collect file                                          | fileName         | none          |
+
 
 For example, if one requires the framework (1) to return after finding the first result on each update operation; and (2) to spend at most 1 hour (3600 seconds) on the incremental matching, then the command should be
 
