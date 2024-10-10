@@ -448,16 +448,20 @@ void Graph::indexInit(){
     uint vLabelMax = this->NumVLabels();
     uint eLabelMax = this->NumELabels();
     uint vMax = this->NumVertices();
-    this->index.resize(vMax, nullptr);
-    for(uint k = 0; k < vMax; k++){
-        std::vector<uint>iNeighbor = this->GetNeighbors(k);
-        std::vector<uint>iNeighborEdgeLabel = this->GetNeighborLabels(k);
-        int * indexDistribution = new int [vLabelMax + eLabelMax]();
-        for(int i = 0; i < iNeighbor.size(); i++){
-            indexDistribution[this->GetVertexLabel(iNeighbor[i])]++;
-            indexDistribution[vLabelMax + iNeighborEdgeLabel[i]]++;
+    this->index.resize(vMax);
+    for (uint k = 0; k < vMax; k++)
+    {
+        this->index[k] = new int[vLabelMax + eLabelMax]{0};
+    }
+    for (uint k = 0; k < vMax; k++)
+    {
+        auto iNeighbor = this->GetNeighbors(k);
+        auto iNeighborEdgeLabel = this->GetNeighborLabels(k);
+        for (int i = 0; i < iNeighbor.size(); i++)
+        {
+            this->index[k][this->GetVertexLabel(iNeighbor[i])]++;
+            this->index[k][vLabelMax + iNeighborEdgeLabel[i]]++;
         }
-        this->index[k] = indexDistribution;
     }
     //for dense graph
 #elif GRAPH_TYPE == 1
